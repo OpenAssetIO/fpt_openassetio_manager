@@ -1,0 +1,4 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2024-2025 The Foundry Visionmongers Ltd
+pytest>=7.0.0
+pylint~=3.3.6

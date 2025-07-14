@@ -1,0 +1,43 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2024-2025 The Foundry Visionmongers Ltd
+
+[project]
+name = "fpt_openassetio_manager"
+version = "1.0.0"
+requires-python = ">=3.10"
+dependencies = [
+    "openassetio>=1.0.0b1.rev0",
+    "openassetio-mediacreation >= 1.0.0a9",
+    # Install shotgun_api3 directly from GitHub, despite PyPI package
+    # being available, since this is recommended by Autodesk docs:
+    # https://developers.shotgridsoftware.com/python-api/installation.html#installing-with-pip
+    "shotgun_api3 @ git+https://github.com/shotgunsoftware/python-api@v3.8.3"
+]
+
+authors = [
+  { name = "The Foundry Visionmongers Ltd" }
+]
+
+description = "An OpenAssetIO compliant manager plugin for Flow Production Tracking (formerly Shotgrid)"
+keywords = ["openassetio", "manager", "flow-production-tracking", "shotgrid"]
+readme = "README.md"
+
+[project.entry-points."openassetio.manager_plugin"]
+"org.foundry.fpt" = "fpt_openassetio_manager"
+
+[build-system]
+requires = ["setuptools>=65.5.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["plugin"]
+
+[tool.pylint.format]
+max-line-length = 99
+
+[tool.black]
+line-length = 99
+
+[tool.flake8]
+max-line-length = 99
+extend-ignore = "E266,"

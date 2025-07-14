@@ -1,0 +1,19 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2025 The Foundry Visionmongers Ltd
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_size = 4
+indent_style = space
+insert_final_newline = true
+max_line_length = 99
+tab_width = 4
+trim_trailing_whitespace = true
+ij_continuation_indent_size = 8
+# For docstrings and comments.
+ij_visual_guides = 72
+
+[*.md]
+max_line_length = 72

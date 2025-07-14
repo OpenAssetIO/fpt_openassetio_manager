@@ -1,0 +1,53 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2024-2025 The Foundry Visionmongers Ltd
+
+# An example config file that can be adapted by host applications to
+# configure the FPT OpenAssetIO plugin via the
+# OPENASSETIO_DEFAUIT_CONFIG environment variable - see
+# https://docs.openassetio.org/OpenAssetIO/runtime_configuration.html#host_default_config
+
+[manager]
+identifier = "org.foundry.fpt"
+
+[manager.settings]
+
+# URL of Flow Production Tracking instance
+server_url = "https://myco.shotgunstudio.example"
+
+##
+# Optional authentication. If not set, the plugin will attempt to get
+# credentials from the SHOTGUN_DESKTOP_CURRENT_USER environment
+# variable, which is set automatically when launching an application
+# through the Shotgun Desktop launcher.
+
+#
+# Script auth.
+# https://help.autodesk.com/view/SGDEV/ENU/?guid=SGD_py_python_api_create_manage_html
+#
+
+# script_name =  "myhost.openassetio"
+# api_key = "abc123"
+
+#
+# Legacy login auth.
+# https://help.autodesk.com/view/SGSUB/ENU/?guid=SG_Administrator_ar_manage_accounts_ar_account_settings_after_migrating_html#legacy-login-and-personal-access-token-settings
+#
+
+# login = "myuser"
+# password = "abc123"
+
+##
+# Optional project ID for pipeline configuration.
+#
+# A pipeline configuration is required in order to resolve workfile
+# paths.
+#
+# By default, the plugin will attempt to use `current_engine()`, which
+# is set automatically when launching an application through Shotgun
+# Desktop launcher.
+#
+# If `current_engine()` is unavailable, then the pipeline config
+# associated with this project ID will be used instead.
+#
+
+# project_id = 123
