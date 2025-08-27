@@ -36,14 +36,16 @@ from openassetio_mediacreation.traits.timeDomain import FrameRangedTrait
 
 class FPTManagerInterface(ManagerInterface):
     """
-    Implement the OpenAssetIO ManagerInterface for Flow Production Tracking.
+    Implement the OpenAssetIO ManagerInterface for Flow Production
+    Tracking.
+
     https://openassetio.github.io/OpenAssetIO/classopenassetio_1_1v1_1_1manager_api_1_1_manager_interface.html
     """
 
     # Entity references provided to this asset manager should be
     # prefixed with this string to be considered valid.
     # e.g. "fpt://asset/PublishedFile/123"
-    __reference_prefix = "fpt://"
+    reference_prefix = "fpt://"
 
     def __init__(self):
         super().__init__()
@@ -66,7 +68,7 @@ class FPTManagerInterface(ManagerInterface):
 
     def identifier(self):
         """
-        Unique identifier of this manager plugin.
+        Retrieve the unique identifier of this manager plugin.
         """
         return "org.foundry.fpt"
 
@@ -143,7 +145,7 @@ class FPTManagerInterface(ManagerInterface):
         """
         Arbitrary metadata about this plugin.
         """
-        return {constants.kInfoKey_EntityReferencesMatchPrefix: self.__reference_prefix}
+        return {constants.kInfoKey_EntityReferencesMatchPrefix: self.reference_prefix}
 
     def managementPolicy(self, traitSets, policyAccess, _context, _hostSession):
         """
@@ -191,7 +193,7 @@ class FPTManagerInterface(ManagerInterface):
         function will rarely, if ever, be called.
         """
         # Check if the string starts with our prefix.
-        return someString.startswith(self.__reference_prefix)
+        return someString.startswith(self.reference_prefix)
 
     def entityTraits(
         self,
@@ -430,13 +432,15 @@ class FPTManagerInterface(ManagerInterface):
           - fpt://asset/{asset_type}/{asset_id}
           - fpt://workfile/{template_name}/{field1}/{field2}...
         """
-        if not ref_str.startswith(self.__reference_prefix):
+        if not ref_str.startswith(self.reference_prefix):
             return None
 
         # Remove prefix and split path
-        ref_type, *parts = ref_str[len(self.__reference_prefix) :].split("/")
+        ref_type, *parts = ref_str[len(self.reference_prefix):].split("/")
 
-        if len(parts) < 2:
+        min_num_parts = 2
+
+        if len(parts) < min_num_parts:
             return None
 
         if ref_type == "asset":
@@ -457,7 +461,9 @@ class FPTManagerInterface(ManagerInterface):
 
         I.e. fpt://asset/{asset_type}/{asset_id}
         """
-        if len(parts) != 2:
+        expected_num_parts = 2
+
+        if len(parts) != expected_num_parts:
             return None
 
         obj_type, ident_str = parts
