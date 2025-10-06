@@ -43,7 +43,8 @@ environment.
 
 An alternative for environments that already include all dependencies
 is to add the `plugin` directory in this repository to the
-`OPENASSETIO_PLUGIN_PATH` environment variable.
+`OPENASSETIO_PLUGIN_PATH` environment variable; and the `plugin/ui`
+directory to the `OPENASSETIO_UI_PLUGIN_PATH` environment variable.
 
 ## Configuration
 
@@ -140,7 +141,7 @@ This is the first iteration of the plugin with minimal functionality:
 - [x] Resolving paths to workfiles.
 - [ ] Querying related entities.
 - [ ] Publishing.
-- [ ] UI delegation.
+- [x] UI delegation.
 
 ## Development
 
